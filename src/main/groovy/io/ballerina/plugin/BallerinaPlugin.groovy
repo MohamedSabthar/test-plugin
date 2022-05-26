@@ -244,10 +244,7 @@ class BallerinaPlugin implements Plugin<Project> {
                         workingDir project.projectDir
                         environment 'JAVA_OPTS', '-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true'
                         if (checkForBreakingChanges) {
-                            println("execute in docker")
-                            println(project.projectDir)
-                            commandLine 'sh', '-c', "docker run --rm --net=host --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly tree ."
-//                             commandLine 'sh', '-c', "docker run --rm --net=host --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly $balJavaDebugParam bal pack --target-dir ${balBuildTarget} --offline ${debugParams}"
+                            commandLine 'sh', '-c', "docker run --rm --net=host --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly $balJavaDebugParam bal pack --target-dir ${balBuildTarget} --offline ${debugParams}"
                         } else if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                             commandLine 'cmd', '/c', "$balJavaDebugParam $distributionBinPath/bal.bat pack --target-dir ${balBuildTarget} --offline ${debugParams} && exit %%ERRORLEVEL%%"
                         } else {
