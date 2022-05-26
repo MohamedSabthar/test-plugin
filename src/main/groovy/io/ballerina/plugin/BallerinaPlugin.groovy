@@ -245,7 +245,7 @@ class BallerinaPlugin implements Plugin<Project> {
                         environment 'JAVA_OPTS', '-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true'
                         if (checkForBreakingChanges) {
                              //commandLine 'sh', '-c', "docker run --net=host  --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly $balJavaDebugParam bal pack --target-dir ${balBuildTarget} --offline ${debugParams}"
-                            commandLine 'sh', '-c', "docker run --net=host  --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly ls"
+//                             commandLine 'sh', '-c', "docker run --net=host  --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly ls"
                             commandLine 'sh', '-c', "docker run --net=host  --user \$(id -u):\$(id -g) -v $project.projectDir/..:/home -v $project.projectDir:/home/ballerina ballerina/ballerina:nightly echo \$(cd ..) & ls"
                         } else if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                             commandLine 'cmd', '/c', "$balJavaDebugParam $distributionBinPath/bal.bat pack --target-dir ${balBuildTarget} --offline ${debugParams} && exit %%ERRORLEVEL%%"
